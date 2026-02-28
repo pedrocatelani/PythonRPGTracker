@@ -12,6 +12,7 @@ class App:
         "modified": datetime.now().strftime("%Y-%m-%d"),
         "level": 1,
         "bonuses": [],
+        "powers": [],
         "attributes": {"for": 0, "des": 0, "con": 0, "int": 0, "car": 0, "sab": 0},
         "status": {
             "pv": 0,
@@ -47,5 +48,5 @@ class App:
 
         else:
             # if file exists, return it
-            with open(path, "r") as f:
+            with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)

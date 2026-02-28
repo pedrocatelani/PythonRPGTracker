@@ -37,7 +37,7 @@ with col_1:
         "Inteligência", -5, 15, step=1, value=char["attributes"].get("int"), icon="🧠"
     )
     wisdom = st.number_input(
-        "Sabedoria", -5, 15, step=1, value=char["attributes"].get("sab"), icon="🧠"
+        "Sabedoria", -5, 15, step=1, value=char["attributes"].get("sab"), icon="📖"
     )
     charisma = st.number_input(
         "Carisma", -5, 15, step=1, value=char["attributes"].get("car"), icon="🫦"
@@ -80,6 +80,7 @@ with col_3:
             "Atributo chave do Ataque",
             atr_list,
             placeholder=char.get("atk_atr"),
+            index=None,
             key="atr_select",
             on_change=write_changes,
             args=(file, "atk_atr", "atr_select"),
@@ -101,12 +102,16 @@ with col_3:
     ecol_1, ecol_2 = st.columns([1, 1])
 
     with ecol_1:
-        pv = st.number_input("Vida", step=1)
-        defense = st.number_input("Armadura/Escudo", step=1)
+        pv = st.number_input("Vida", step=1, value=char["status"]["pv"])
+        defense = st.number_input(
+            "Armadura/Escudo", step=1, value=char["status"]["defense"]
+        )
 
     with ecol_2:
-        pm = st.number_input("Mana", step=1)
-        atack = st.number_input("Bônus Ataque Arma", step=1)
+        pm = st.number_input("Mana", step=1, value=char["status"]["pm"])
+        atack = st.number_input(
+            "Bônus Ataque Arma", step=1, value=char["status"]["attack"]
+        )
 
     if st.button("Salvar Status", width="stretch"):
         status = {
